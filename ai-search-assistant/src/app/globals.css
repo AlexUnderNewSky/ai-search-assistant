@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --surface-2: #f1f0ed;
+  --border: #e4e2dd;
+  --fg: #1b1b1f;
+  --muted: #6b6a70;
+  --accent: #5b4bff;
+  --accent-fg: #ffffff;
+  --accent-soft: #eeebff;
+  --success: #12805c;
+  --warning: #b45309;
+  --danger: #c2410c;
+  --ring: rgb(91 75 255 / 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e0e11;
+    --surface: #17171c;
+    --surface-2: #1f1f26;
+    --border: #2a2a33;
+    --fg: #ececf1;
+    --muted: #9a99a6;
+    --accent: #8b7dff;
+    --accent-fg: #0e0e11;
+    --accent-soft: #241f45;
+    --success: #34d399;
+    --warning: #fbbf24;
+    --danger: #fb923c;
+    --ring: rgb(139 125 255 / 0.4);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.28s ease-out both;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 37%, var(--surface-2) 63%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .skeleton {
+    animation: none;
+  }
+}
